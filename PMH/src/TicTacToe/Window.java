@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class Window extends JFrame implements ActionListener {
 
 	public final int		numberOfColumns	= 3;
@@ -57,13 +58,15 @@ public class Window extends JFrame implements ActionListener {
 						if (status == FieldStatus.P1) {
 							TTTPanel.getField()[j][i].setStatus(FieldStatus.P1);
 							TTTPanel.getField()[j][i].setColor(Color.RED);
-							System.out.println("P1 hat gewonnen! - " + win.alexistscheiﬂe(TTTPanel));
+							if (win.pruef(TTTPanel, FieldStatus.P1) != null)
+								System.out.println("P1 hat gewonnen!");
 							status = FieldStatus.P2;
 							break;
 						} else if (status == FieldStatus.P2) {
 							TTTPanel.getField()[j][i].setStatus(FieldStatus.P2);
 							TTTPanel.getField()[j][i].setColor(Color.GREEN);
-							System.out.println("P2 hat gewonnen! - " + win.alexistscheiﬂe(TTTPanel));
+							if (win.pruef(TTTPanel, FieldStatus.P2) != null)
+								System.out.println("P2 hat gewonnen!");
 							status = FieldStatus.P1;
 							break;
 						}
