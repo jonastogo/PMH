@@ -19,7 +19,9 @@ public class Window extends JFrame implements ActionListener {
 	public FieldStatus		status			= FieldStatus.P1;
 	public TTTPanel			TTTPanel;
 	public JPanel			restarter;
+	public JButton			restart;
 	public boolean			columnfull		= false;
+	private int				response;
 
 	public static Window	instance;
 	public static Win		win;
@@ -43,7 +45,13 @@ public class Window extends JFrame implements ActionListener {
 		restarter = new JPanel();
 		contentPane.add(TTTPanel, BorderLayout.CENTER);
 		contentPane.add(restarter, BorderLayout.SOUTH);
-		restarter.add(new JButton("Restart"));
+		restart = new JButton("Restart");
+		restarter.add(restart);
+		restart.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				restart();
+			}
+		});
 	}
 
 	@Override
@@ -57,15 +65,21 @@ public class Window extends JFrame implements ActionListener {
 						if (status == FieldStatus.P1) {
 							TTTPanel.getField()[j][i].setStatus(FieldStatus.P1);
 							TTTPanel.getField()[j][i].setColor(Color.RED);
-							if (win.pruef(TTTPanel, FieldStatus.P1) != null)
-								System.out.println("P1 hat gewonnen!");
+							if (win.pruef(TTTPanel, FieldStatus.P1) != null) {
+								response = JOptionPane.showConfirmDialog(null, "Spieler 1 hat gewonnen! Spieler 2, du bist scheiﬂe!", "Spieler 1 Win", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
+								if (response == JOptionPane.CLOSED_OPTION || response == JOptionPane.OK_OPTION)
+									restart();
+							}
 							status = FieldStatus.P2;
 							break;
 						} else if (status == FieldStatus.P2) {
 							TTTPanel.getField()[j][i].setStatus(FieldStatus.P2);
 							TTTPanel.getField()[j][i].setColor(Color.GREEN);
-							if (win.pruef(TTTPanel, FieldStatus.P2) != null)
-								System.out.println("P2 hat gewonnen!");
+							if (win.pruef(TTTPanel, FieldStatus.P2) != null) {
+								response = JOptionPane.showConfirmDialog(null, "Spieler 2 hat gewonnen! Spieler1, du bist scheiﬂe!", "Spieler 2 Win", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
+								if (response == JOptionPane.CLOSED_OPTION || response == JOptionPane.OK_OPTION)
+									restart();
+							}
 							status = FieldStatus.P1;
 							break;
 						}
@@ -75,6 +89,16 @@ public class Window extends JFrame implements ActionListener {
 					}
 				}
 				this.repaint();
+			}
+		}
+	}
+
+	public void restart() {
+		System.out.println("restart");
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				TTTPanel.getField()[i][j].setStatus(FieldStatus.Empty);
+				TTTPanel.getField()[i][j].setColor(Color.BLACK);
 			}
 		}
 	}
