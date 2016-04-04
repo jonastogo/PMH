@@ -23,11 +23,11 @@ public class PanelButton {
 	}
 
 	public void droaw(Graphics2D g) {
-		g.setColor(Color.WHITE);
+		g.setColor(Color.BLACK);
 		g.drawRect(x, y, width, height);
-		g.setColor(status == FieldStatus.Empty ? Color.WHITE : (status == FieldStatus.P1 ? Color.RED : Color.GREEN));
+		g.setColor(status == FieldStatus.Empty ? Color.BLACK : (status == FieldStatus.P1 ? Color.RED : Color.GREEN));
 		g.fillRect(x + 1, y + 1, width - 1, height - 1);
-		g.setColor(Color.WHITE);
+		g.setColor(Color.BLACK);
 		g.drawString(this.getText(), this.x + (int) ((this.getWidth() / 2) - (g.getFontMetrics().getStringBounds(this.getText(), g).getWidth() / 2)), this.y + (int) ((this.getHeight() / 2) + (g.getFontMetrics().getStringBounds(this.getText(), g).getHeight() / 2)));
 	}
 

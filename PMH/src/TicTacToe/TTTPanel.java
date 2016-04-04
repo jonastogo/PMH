@@ -47,6 +47,7 @@ public class TTTPanel extends JPanel implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
+		y -= 25;
 		for (int i = 0; i < field[0].length; i++) {
 			for (int j = 0; j < field.length; j++) {
 				if (field[j][i].isInMe(x, y)) {

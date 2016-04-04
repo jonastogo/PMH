@@ -15,7 +15,6 @@ public class Window extends JFrame implements ActionListener {
 
 	public final int		numberOfColumns	= 3;
 	public JPanel			contentPane;
-	public JPanel			buttons;
 	public JButton			selectColumn;
 	public FieldStatus		status			= FieldStatus.P1;
 	public TTTPanel			TTTPanel;
