@@ -2,6 +2,7 @@ package TicTacToe;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,23 +14,21 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Window extends JFrame implements ActionListener {
 
-	public final int		numberOfColumns	= 3;
-	public JPanel			contentPane;
-	public JButton			selectColumn;
-	public FieldStatus		status			= FieldStatus.P1;
-	public TTTPanel			TTTPanel;
-	public JPanel			restarter;
-	public JButton			restart;
-	public int				full			= 0;
+	private JPanel			contentPane;
+	private FieldStatus		status	= FieldStatus.P1;
+	private TTTPanel		TTTPanel;
+	private JPanel			restarter;
+	private JButton			restart;
+	private int				full	= 0;
 	private int				response;
-
 	public static Window	instance;
 	public static Win		win;
 
 	public static void main(String[] args) {
 		Window frame = new Window("TicTacToe");
 		win = new Win();
-		frame.setForeground(Color.BLACK);
+		final Dimension d = frame.getToolkit().getScreenSize();
+		frame.setLocation((int) ((d.getWidth() - frame.getWidth()) / 2), (int) ((d.getHeight() - frame.getHeight()) / 2));
 		frame.setVisible(true);
 	}
 
@@ -38,17 +37,17 @@ public class Window extends JFrame implements ActionListener {
 		instance = this;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(numberOfColumns * 3 / 4 * 70 + 105, numberOfColumns * 3 / 4 * 70 + 160);
+		setSize(9 / 4 * 70 + 105, 9 / 4 * 70 + 163);
 		contentPane = new JPanel(new BorderLayout());
 		setContentPane(contentPane);
-		TTTPanel = new TTTPanel(numberOfColumns, this);
+		TTTPanel = new TTTPanel(this);
 		restarter = new JPanel();
 		contentPane.add(TTTPanel, BorderLayout.CENTER);
 		contentPane.add(restarter, BorderLayout.SOUTH);
 		restart = new JButton("Restart");
 		restarter.add(restart);
-		restart.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent e) {
+		restart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				restart();
 			}
 		});
@@ -56,14 +55,12 @@ public class Window extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
-		String label;
-		label = e.getActionCommand();
-		for (int i = 0; i < numberOfColumns; i++) {
-			for (int j = 0; j < numberOfColumns; j++) {
-				if (label.equals("row" + j + " " + i)) {
+		String label = e.getActionCommand();
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (label.equals("field " + j + " " + i)) {
 					if (TTTPanel.getField()[j][i].getStatus() == FieldStatus.Empty) {
-						if (status == FieldStatus.P1) {
+						if (getStatus() == FieldStatus.P1) {
 							TTTPanel.getField()[j][i].setStatus(FieldStatus.P1);
 							TTTPanel.getField()[j][i].setColor(Color.RED);
 							if (win.pruef(TTTPanel, FieldStatus.P1) != null) {
@@ -71,7 +68,7 @@ public class Window extends JFrame implements ActionListener {
 								if (response == JOptionPane.CLOSED_OPTION || response == JOptionPane.OK_OPTION)
 									restart();
 							}
-							status = FieldStatus.P2;
+							setStatus(FieldStatus.P2);
 							full++;
 							if (full == 9) {
 								response = JOptionPane.showConfirmDialog(null, "Das Spiel ist Unentschieden ausgegangen!", "Unentschieden", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
@@ -79,7 +76,7 @@ public class Window extends JFrame implements ActionListener {
 									restart();
 							}
 							break;
-						} else if (status == FieldStatus.P2) {
+						} else if (getStatus() == FieldStatus.P2) {
 							TTTPanel.getField()[j][i].setStatus(FieldStatus.P2);
 							TTTPanel.getField()[j][i].setColor(Color.GREEN);
 							if (win.pruef(TTTPanel, FieldStatus.P2) != null) {
@@ -87,13 +84,8 @@ public class Window extends JFrame implements ActionListener {
 								if (response == JOptionPane.CLOSED_OPTION || response == JOptionPane.OK_OPTION)
 									restart();
 							}
-							status = FieldStatus.P1;
+							setStatus(FieldStatus.P1);
 							full++;
-							if (full == 9) {
-								response = JOptionPane.showConfirmDialog(null, "Das Spiel ist Unentschieden ausgegangen!", "Unentschieden", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
-								if (response == JOptionPane.CLOSED_OPTION || response == JOptionPane.OK_OPTION)
-									restart();
-							}
 							break;
 						}
 					} else {
@@ -107,7 +99,6 @@ public class Window extends JFrame implements ActionListener {
 	}
 
 	public void restart() {
-		System.out.println("restart");
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				TTTPanel.getField()[i][j].setStatus(FieldStatus.Empty);
@@ -115,7 +106,15 @@ public class Window extends JFrame implements ActionListener {
 			}
 		}
 		full = 0;
-		status = FieldStatus.P1;
+		setStatus(FieldStatus.P1);
 		this.repaint();
+	}
+
+	public FieldStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(FieldStatus status) {
+		this.status = status;
 	}
 }

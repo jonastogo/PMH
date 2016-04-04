@@ -22,7 +22,7 @@ public class PanelButton {
 		this.setColor(color);
 	}
 
-	public void droaw(Graphics2D g) {
+	public void draw(Graphics2D g) {
 		g.setColor(Color.BLACK);
 		g.drawRect(x, y, width, height);
 		g.setColor(status == FieldStatus.Empty ? Color.BLACK : (status == FieldStatus.P1 ? Color.RED : Color.GREEN));

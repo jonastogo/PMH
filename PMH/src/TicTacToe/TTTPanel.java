@@ -14,14 +14,13 @@ import javax.swing.JPanel;
 public class TTTPanel extends JPanel implements MouseListener {
 
 	private Window		parent;
-
 	private PanelButton	field[][]	= new PanelButton[3][3];
 
-	public TTTPanel(int numberOfColumns, Window w) {
+	public TTTPanel(Window w) {
 		this.parent = w;
 		for (int i = 0; i < field[0].length; i++) {
 			for (int j = 0; j < field.length; j++) {
-				field[j][i] = new PanelButton((j * 70) + 15, i * 70 + 30, 67, 67, "", "row" + j + " " + i);
+				field[j][i] = new PanelButton((j * 70) + 15, i * 70 + 30, 67, 67, "", "field " + j + " " + i);
 			}
 		}
 		this.addMouseListener(this);
@@ -33,12 +32,12 @@ public class TTTPanel extends JPanel implements MouseListener {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-		String player = "Spieler " + (this.parent.status.ordinal() + 1) + " ist an der Reihe!";
+		String player = "Spieler " + (this.parent.getStatus().ordinal() + 1) + " ist an der Reihe!";
 		g.setColor(Color.BLACK);
 		g.drawString(player, (int) (14 + this.getBounds().getX()), 20);
 		for (int i = 0; i < field[0].length; i++) {
 			for (int j = 0; j < field.length; j++) {
-				field[j][i].droaw(g);
+				field[j][i].draw(g);
 			}
 		}
 	}
@@ -51,7 +50,6 @@ public class TTTPanel extends JPanel implements MouseListener {
 		for (int i = 0; i < field[0].length; i++) {
 			for (int j = 0; j < field.length; j++) {
 				if (field[j][i].isInMe(x, y)) {
-					System.out.println(j + "-" + i);
 					this.parent.actionPerformed(new ActionEvent("button", ActionEvent.ACTION_PERFORMED, field[j][i].getCmd()));
 				}
 			}
