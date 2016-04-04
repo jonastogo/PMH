@@ -22,9 +22,11 @@ public class Window extends JFrame implements ActionListener {
 	public boolean			columnfull		= false;
 
 	public static Window	instance;
+	public static Win		win;
 
 	public static void main(String[] args) {
 		Window frame = new Window("TicTacToe");
+		win = new Win();
 		frame.setForeground(Color.BLACK);
 		frame.setVisible(true);
 	}
@@ -55,11 +57,13 @@ public class Window extends JFrame implements ActionListener {
 						if (status == FieldStatus.P1) {
 							TTTPanel.getField()[j][i].setStatus(FieldStatus.P1);
 							TTTPanel.getField()[j][i].setColor(Color.RED);
+							System.out.println("P1 hat gewonnen! - " + win.alexistscheiﬂe(TTTPanel));
 							status = FieldStatus.P2;
 							break;
 						} else if (status == FieldStatus.P2) {
 							TTTPanel.getField()[j][i].setStatus(FieldStatus.P2);
 							TTTPanel.getField()[j][i].setColor(Color.GREEN);
+							System.out.println("P2 hat gewonnen! - " + win.alexistscheiﬂe(TTTPanel));
 							status = FieldStatus.P1;
 							break;
 						}
