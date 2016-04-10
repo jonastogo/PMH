@@ -65,15 +65,19 @@ public class Window extends JFrame implements ActionListener {
 							TTTPanel.getField()[j][i].setColor(Color.RED);
 							if (win.pruef(TTTPanel, FieldStatus.P1) != null) {
 								response = JOptionPane.showConfirmDialog(null, "Spieler 1 hat gewonnen! Spieler 2, du bist scheiﬂe!", "Spieler 1 Win", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
-								if (response == JOptionPane.CLOSED_OPTION || response == JOptionPane.OK_OPTION)
+								if (response == JOptionPane.CLOSED_OPTION || response == JOptionPane.OK_OPTION) {
 									restart();
+									return;
+								}
 							}
 							setStatus(FieldStatus.P2);
 							full++;
 							if (full == 9) {
 								response = JOptionPane.showConfirmDialog(null, "Das Spiel ist Unentschieden ausgegangen!", "Unentschieden", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
-								if (response == JOptionPane.CLOSED_OPTION || response == JOptionPane.OK_OPTION)
+								if (response == JOptionPane.CLOSED_OPTION || response == JOptionPane.OK_OPTION) {
 									restart();
+									return;
+								}
 							}
 							break;
 						} else if (getStatus() == FieldStatus.P2) {
@@ -81,8 +85,10 @@ public class Window extends JFrame implements ActionListener {
 							TTTPanel.getField()[j][i].setColor(Color.GREEN);
 							if (win.pruef(TTTPanel, FieldStatus.P2) != null) {
 								response = JOptionPane.showConfirmDialog(null, "Spieler 2 hat gewonnen! Spieler1, du bist scheiﬂe!", "Spieler 2 Win", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
-								if (response == JOptionPane.CLOSED_OPTION || response == JOptionPane.OK_OPTION)
+								if (response == JOptionPane.CLOSED_OPTION || response == JOptionPane.OK_OPTION) {
 									restart();
+									return;
+								}
 							}
 							setStatus(FieldStatus.P1);
 							full++;
