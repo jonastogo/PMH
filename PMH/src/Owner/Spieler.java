@@ -4,8 +4,14 @@ import H2.Game;
 import H2.GameStrategy;
 import H2.Move;
 import H2.Player;
+import TicTacToe.FieldStatus;
 
 public class Spieler implements Player {
+	private FieldStatus spieler;
+
+	public Spieler(FieldStatus spieler) {
+		this.spieler = spieler;
+	}
 
 	@Override
 	public void setStrategy(GameStrategy s) {
@@ -20,9 +26,13 @@ public class Spieler implements Player {
 	}
 
 	@Override
-	public char getSymbol() {
-		// TODO Auto-generated method stub
-		return 0;
+	public FieldStatus getSymbol() {
+		return spieler;
+	}
+
+	@Override
+	public void setSymbol(FieldStatus fs) {
+		spieler = fs;
 	}
 
 }

@@ -55,7 +55,7 @@ public class Window extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String label = e.getActionCommand();
+		String label = e.getActionCommand(); // field 1 2
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				if (label.equals("field " + j + " " + i)) {

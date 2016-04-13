@@ -5,25 +5,36 @@ import java.util.List;
 import H2.Game;
 import H2.Move;
 import H2.Player;
+import TicTacToe.FieldStatus;
 
 public class Spiel implements Game {
+	private FieldStatus	currentP	= FieldStatus.P1;
+	private Player		currentPlayer;
+	private Main		main;
+
+	public Spiel(Main main) {
+		this.main = main;
+	}
 
 	@Override
 	public void setPlayerX(Player p) {
-		// TODO Auto-generated method stub
-
+		p.setSymbol(FieldStatus.P1);
 	}
 
 	@Override
 	public void setPlayerO(Player p) {
-		// TODO Auto-generated method stub
+		p.setSymbol(FieldStatus.P2);
 
 	}
 
 	@Override
 	public Player currentPlayer() {
-		// TODO Auto-generated method stub
-		return null;
+		if (main.getSpielerliste().get(0).getSymbol() == currentP) {
+			currentPlayer = main.getSpielerliste().get(0);
+		} else if (main.getSpielerliste().get(0).getSymbol() == currentP) {
+			currentPlayer = main.getSpielerliste().get(1);
+		}
+		return currentPlayer;
 	}
 
 	@Override
@@ -60,6 +71,14 @@ public class Spiel implements Game {
 	public void printField() {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void setCurrentP(FieldStatus fs) {
+		this.currentP = fs;
+	}
+
+	public FieldStatus getCurrentP() {
+		return currentP;
 	}
 
 }

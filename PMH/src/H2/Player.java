@@ -1,12 +1,16 @@
 package H2;
 
+import TicTacToe.FieldStatus;
+
 public interface Player {
-	// Spielstrategie setzen
-	void setStrategy(GameStrategy s);
+
+	public void setStrategy(GameStrategy s);
 
 	// Naechsten Zug berechnen (Delegation an Strategie!)
-	Move nextMove(Game g);
+	public Move nextMove(Game g);
 
 	// Zeichen fuer den Spieler liefern
-	char getSymbol();
+	public FieldStatus getSymbol();
+
+	public void setSymbol(FieldStatus fs);
 }
