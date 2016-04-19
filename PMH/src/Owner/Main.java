@@ -42,5 +42,4 @@ public class Main {
 	protected void setSpielzuege(Spielzuege spielzuege) {
 		this.spielzuege = spielzuege;
 	}
-
 }
