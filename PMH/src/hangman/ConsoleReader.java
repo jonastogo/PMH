@@ -9,7 +9,7 @@ public class ConsoleReader {
 	private BufferedReader reader;
 
 	public ConsoleReader(BufferedReader br) {
-
+		// wird nicht gebraucht
 	}
 
 	public char readNextChar() {
@@ -19,7 +19,6 @@ public class ConsoleReader {
 			char c = eingabe.charAt(0);
 			return c;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;
