@@ -12,7 +12,6 @@ public class Spiel {
 		cs = new ConsoleReader(br);
 		wlr = new WordlistReader("data/wordlist.txt");
 		wq = new WordQuiz(0, 0, cs, wlr);
-
 	}
 
 	public static void main(String[] args) {
