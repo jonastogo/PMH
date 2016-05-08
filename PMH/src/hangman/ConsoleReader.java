@@ -18,8 +18,9 @@ public class ConsoleReader {
 			String eingabe = reader.readLine();
 			char c = eingabe.charAt(0);
 			return c;
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException | IndexOutOfBoundsException e) {
+			System.out.println("Bitte gib einen gültigen Buchstaben ein!");
+			readNextChar();
 		}
 		return 0;
 	}
