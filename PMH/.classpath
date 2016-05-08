@@ -4,5 +4,17 @@
 	<classpathentry kind="src" path="data"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="data/MinMaxStrategy.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="data/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="data/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="data/jfreechart-1.0.19-experimental.jar"/>
+	<classpathentry kind="lib" path="data/jfreechart-1.0.19-swt.jar"/>
+	<classpathentry kind="lib" path="data/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="data/jfreesvg-2.0.jar"/>
+	<classpathentry kind="lib" path="data/junit-4.11.jar"/>
+	<classpathentry kind="lib" path="data/orsoncharts-1.4-eval-nofx.jar"/>
+	<classpathentry kind="lib" path="data/orsonpdf-1.6-eval.jar"/>
+	<classpathentry kind="lib" path="data/servlet.jar"/>
+	<classpathentry kind="lib" path="data/swtgraphics2d.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
