@@ -51,10 +51,10 @@ public class Write {
 			for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
 				if (workbook.getSheetName(i).equals(date)) {
 					sheet = workbook.createSheet(workbook.getSheetName(i) + "(1)");
-					//catch (IllegalArgumentException e) {
-					//										// Später drüber nach denken
+					// catch (IllegalArgumentException e) {
+					// // Später drüber nach denken
 
-					//		}
+					// }
 					added = true;
 				}
 			}
@@ -75,11 +75,11 @@ public class Write {
 				for (int x = 0; x < 2; x++) {
 					if (x == 0) {
 						cell = row.createCell(x);
-						cell.setCellValue(tmp.getClass().getName().substring(6));//Cell durch Wert Token Name ersetzen
+						cell.setCellValue(tmp.getClass().getName().substring(6));// Cell durch Wert Token Name ersetzen
 					}
 					if (x == 1) {
 						cell = row.createCell(x);
-						cell.setCellValue(tmp.getHtml());//Cell durch Wert Token Content ersetzen
+						cell.setCellValue(tmp.getHtml());// Cell durch Wert Token Content ersetzen
 					}
 					if ((i % 2) == 0) {
 						CellStyle style1 = workbook.createCellStyle();
