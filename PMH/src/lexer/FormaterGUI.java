@@ -17,8 +17,6 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 
-import b06.Token;
-
 public class FormaterGUI extends JFrame {
 
 	private JPanel			contentPane;
@@ -111,6 +109,7 @@ public class FormaterGUI extends JFrame {
 				}
 				output += "</body>";
 				outputPane.setText(output);
+			}
 		});
 
 	}
