@@ -46,7 +46,7 @@ public class Lexer {
 		while(input.length() > 0) {
 			newToken = testTokens(input);
 			input = input.substring(newToken.getCompleteLength());
-			token.add(newToken);
+			resultingTokens.add(newToken);
 			
 		}
 		

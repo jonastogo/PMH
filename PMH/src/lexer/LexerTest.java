@@ -18,7 +18,9 @@ public class LexerTest {
 		lexer.registerCatchAll(new CatchAllToken());
 		
 		ArrayList<Token> res = lexer.tokenize("@asdasdasd dsfdsfsdf");
-		
+		for(Token tmp : res) {
+			System.out.println("Token: " + tmp.getClass().getName().substring(6));
+		}
 
 	}
 
