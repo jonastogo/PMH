@@ -17,6 +17,8 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 
+import b06.Token;
+
 public class FormaterGUI extends JFrame {
 
 	private JPanel			contentPane;
@@ -102,12 +104,13 @@ public class FormaterGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println(inputPane.getText());
-				outputPane.setText("<body></body>");
+
+				String output = "<body>";
 				for (Token t : lexer.tokenize(inputPane.getText())) {
-					String output = outputPane.getText().replace("</body>", t.getHtml() + "</body>");
-					outputPane.setText(output);
+					output += t.getHtml();
 				}
-			}
+				output += "</body>";
+				outputPane.setText(output);
 		});
 
 	}
