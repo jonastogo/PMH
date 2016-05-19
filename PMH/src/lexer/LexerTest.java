@@ -19,7 +19,7 @@ public class LexerTest {
 
 		ArrayList<Token> res = lexer.tokenize("@asdasdasd dsfdsfsdf");
 		try {
-			Write write = new Write("test.xls", res);
+			Write write = new Write(res);
 		} catch (IOException e) {
 
 		}

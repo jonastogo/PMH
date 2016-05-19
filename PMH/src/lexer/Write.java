@@ -19,13 +19,14 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 public class Write {
 	/**
 	 * Wirte the list data to file
-	 * 
+	 *
 	 * @param file
 	 * @param list
 	 * @throws IOException
 	 */
-	public Write(String file, ArrayList<Token> list) throws IOException {
-		if (file != null) {
+	public Write(ArrayList<Token> list) throws IOException {
+		if (list != null) {
+			String file = "date/Save.xls";
 			boolean added = false;
 			HSSFWorkbook workbook = null;
 			HSSFSheet sheet = null;
