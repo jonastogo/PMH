@@ -16,6 +16,6 @@
 	<classpathentry kind="lib" path="data/orsonpdf-1.6-eval.jar"/>
 	<classpathentry kind="lib" path="data/servlet.jar"/>
 	<classpathentry kind="lib" path="data/swtgraphics2d.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Alexander/git/PMH/PMH/data/poi-3.15-beta1.jar"/>
+	<classpathentry kind="lib" path="data/poi-3.15-beta1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

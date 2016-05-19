@@ -2,22 +2,23 @@ package lexer;
 
 import java.util.regex.Pattern;
 
-public class KeyWordToken extends Token{
-	private String content; 
-	
-	
+public class KeyWordToken extends Token {
+	private String content;
+
 	public KeyWordToken(String content) {
 		this();
 		this.content = content;
 	}
+
 	public KeyWordToken() {
-		pattern = Pattern.compile("^(import|class|public|private|final|static|return|if|else|while|try|catch|finally|package)");
+		pattern = Pattern.compile("^(import|class|public|private|final|static|return|if|else|while|try|catch|finally|package|void)");
 		priority = 6;
 	}
+
 	public int getCompleteLength() {
 		return content.length();
 	}
-	
+
 	protected Token getToken() {
 		return new KeyWordToken(matcher.group(0));
 	}
@@ -33,6 +34,5 @@ public class KeyWordToken extends Token{
 	protected String getContent() {
 		return content;
 	}
-	
 
 }
