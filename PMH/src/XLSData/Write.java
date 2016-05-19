@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -32,10 +33,12 @@ public class Write {
 			}
 			Date currentTime = new Date();
 			String date = formatter.format(currentTime);
-
+			HSSFFont fett = workbook.createFont();
+			fett.setBoldweight(fett.BOLDWEIGHT_BOLD);
 			CellStyle style = workbook.createCellStyle();
 			style.setFillForegroundColor(IndexedColors.YELLOW.getIndex());
 			style.setFillPattern(CellStyle.SOLID_FOREGROUND);
+			style.setFont(fett);
 
 			for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
 				if (workbook.getSheetName(i).equals(date)) {
