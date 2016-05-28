@@ -11,8 +11,8 @@ import java.io.InputStreamReader;
  */
 public class GameOfLife {
 
-	String[][]	game;
-	String[][]	game2;
+	public String[][]	game;
+	public String[][]	game2;
 
 	/**
 	 * Definiert die Größe der Welt (x-y-Matrix)
