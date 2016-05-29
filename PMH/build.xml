@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="b07.GameOfLife" default="dist" basedir=".">
+	<!-- Globale Pfade fuer die verschiedenen Target's -->
+	<property name="src" location="src"/>
+	<property name="build" location="build"/>
+	<property name="dist" location="dist"/>
+	<property name="doc" location="doc"/>
+	<!-- Name der Hauptklasse für das Jar Manifest -->
+	<property name="main-class" value="b07.GameOfLife" />
+	
+	<!-- Ordner mit aktuellem Time Stamp -->
+	<tstamp>
+		<format property="START_TIME" pattern="dd_MMM_yy_HH_mm_ss"/>
+	</tstamp>
+	<property name="dist-jar-ts" value="${START_TIME}_JAR"/>
+	
+	<!-- Compiliert die Src-Dateien und packt sie in das Verzeichnis build -->
+	<target name ="build" depends="prepare" description="Compile all sources of the projects">
+		<mkdir dir="${build}"/>
+		<javac includeantruntime="false" srcdir="${src}" destdir="${build}"></javac>
+		<javac includeantruntime="false" srcdir="test" destdir="${build}">
+			<classpath location="junit.jar" />
+		</javac>
+	</target>
+	
+	<!-- Loescht alle automatisch erstellten Ordner -->
+	<target name="clean">
+		<delete dir="${build}" />
+		<delete dir="${doc}" />
+		<delete dir="${dist}" />
+	</target>
+
+	<!-- Erstellt benoetigten Verzeichnisse -->
+	<target name="prepare" depends="clean">
+		<mkdir dir="${build}" />
+		<mkdir dir="${doc}" />
+		<delete dir="${dist}" />
+		<mkdir dir="${build}/test" />
+		<mkdir dir="${dist}/${dist-jar-ts}" />
+	</target>
+
+	<!-- Fuert die JUnit-Tests aus -->
+	<target name="test" depends="build">
+		<junit printsummary="yes" haltonfailure="no">
+			<formatter type="xml"/>
+			<classpath location="C:\Users\Alexander\git\PMH\PMH\data\junit.jar" />
+			<classpath location="C:\Users\Alexander\git\PMH\PMH\data\hamcrest-core-1.3.jar"/>
+			<classpath location="${build}" />
+			<batchtest todir="${build}/test">
+				<fileset dir="test" includes="**/*Test.java" />
+			</batchtest>
+		</junit>
+		<junitreport todir="${build}/test">
+			<fileset dir="${build}/test">
+					<include name="TEST-*.xml"/>
+				</fileset>
+			<report todir="${build}/test/html"/>
+		</junitreport>
+	</target>
+	
+	<!-- Erstellt eine GameOfLife.jar im Verzeichnis build -->
+	<target name="jar" depends="test">
+		<jar jarfile="${build}/GameOfLife.jar" basedir="${build}">
+			<manifest>
+				<attribute name="Main-Class" value="${main-class}" />
+			</manifest>
+		</jar>
+	</target>
+	
+	<!-- Generiert die Dokumentation -->
+	<target name="doc" depends="jar">
+		<javadoc destdir="${doc}" packagenames="*.*"
+				author="false" private="true" version="true" windowtitle="GameOfLife Dokumentation">
+			<packageset dir="${src}" />
+		</javadoc>
+	</target>
+	
+	<!-- Verschiebt die jar und die Dokumenation in das Verzeichnis dist -->
+	<target name="dist" depends="doc">
+		<move todir="${dist}/${dist-jar-ts}" includeEmptyDirs="yes" verbose="true">
+		    <fileset dir="build" >
+		    	<include name="**/*.jar" />
+			</fileset>
+		</move>
+		<move todir="${dist}/doc" includeEmptyDirs="yes" verbose="true">
+			<fileset dir="doc" >
+				<include name="**/*" />
+			</fileset>
+		</move>
+	</target>
+</project>
